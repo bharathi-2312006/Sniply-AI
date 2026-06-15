@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Illaiya Bharathi</title>
+<meta name="description"
+content="Portfolio of Illaiya Bharathi – Web developer exploring HTML, CSS, JavaScript, Artificial Intelligence, and Cybersecurity.">
+<link rel="icon" type="image/png" href="assets/icons/favicon.png">
+
+<meta name="author" content="Illaiya Bharathi">
+<meta name="robots" content="index, follow">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+  <!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Illaiyabharathi.D</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="projects.html">Projects</a>
+    <a href="contacts.html">Contact</a>
+    <a href="how-i-built.html">How I Built This</a>
+  </nav>
+</header>
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+
+    <h1 class="fade-in">Get in Touch</h1>
+    <p class="contact-sub fade-in">
+      I’m open to opportunities, collaborations, and discussions.  
+      Feel free to connect with me.
+    </p>
+
+    <div class="contact-grid">
+
+      <!-- EMAIL -->
+      <div class="contact-card fade-in" onclick="copyEmail()">
+        <div class="contact-icon">
+          <span class="glow-ring"></span>
+          <img src="assets/icons/email.png" alt="Email">
+        </div>
+        <h3>Email</h3>
+        <p id="emailText">your_email@gmail.com</p>
+        <span class="hint">Click to copy</span>
+      </div>
+
+      <!-- LINKEDIN -->
+      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID"
+         target="_blank"
+         class="contact-card fade-in link-card">
+
+        <div class="contact-icon">
+          <span class="glow-ring"></span>
+          <img src="assets/icons/linkedin.png" alt="LinkedIn">
+        </div>
+        <h3>LinkedIn</h3>
+        <p>Connect with me</p>
+        <span class="hint">Open profile</span>
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- JS -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+    function copyEmail() {
+      const email = document.getElementById("emailText").innerText;
+      navigator.clipboard.writeText(email);
+      alert("Email copied to clipboard!");
+    }
+  </script>
+<footer class="site-footer">
+  <p>© 2026 Ilaiya Bharathi</p>
+  <p>Built with HTML, CSS & JavaScript</p>
+</footer>
+
+</body>
+</html>

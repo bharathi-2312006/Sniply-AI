@@ -1,0 +1,643 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: #0f0f0f;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #cccccc;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #00ffd5;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  min-height: 100vh;
+  padding-top: 120px;
+}
+
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+.hero-image {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin-bottom: 35px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+  position: relative;
+  animation: softFloat 5s ease-in-out infinite;
+}
+
+.hero-image .ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #00ffd5, transparent, #00ffd5);
+  filter: blur(8px);
+  opacity: 0.85;
+  z-index: 1;
+  animation: rotateRing 9s linear infinite;
+}
+
+/* =========================
+   HERO TEXT
+========================= */
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 14px;
+}
+
+.hero h1 span {
+  color: #00ffd5;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 650px;
+  color: #cfcfcf;
+  line-height: 1.6;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.hero-buttons {
+  margin-top: 32px;
+}
+
+.btn {
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.primary {
+  background: #00ffd5;
+  color: #000;
+}
+
+.primary:hover {
+  transform: scale(1.05);
+}
+
+.outline {
+  border: 1px solid #00ffd5;
+  color: #00ffd5;
+  overflow: hidden;
+}
+
+.outline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #00ffd5;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.outline:hover::after {
+  transform: scaleX(1);
+}
+
+.outline:hover {
+  color: #000;
+}
+
+/* =========================
+   ABOUT PAGE
+========================= */
+.about-section {
+  min-height: 100vh;
+  padding-top: 140px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-container {
+  max-width: 900px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.about-container h1 {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+}
+
+.about-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #d0d0d0;
+  margin-bottom: 20px;
+}
+
+.about-info {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: #181818;
+  padding: 25px;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,255,213,0.2);
+}
+
+/* =========================
+   SKILLS PAGE
+========================= */
+.skills-section {
+  min-height: 100vh;
+  padding-top: 140px;
+  text-align: center;
+}
+
+.skills-grid {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.skill-card {
+  background: #181818;
+  padding: 35px 20px;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.skill-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 18px 40px rgba(0,255,213,0.25);
+}
+
+.skill-icon {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-icon img {
+  width: 55px;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(0,255,213,0.3));
+}
+
+.glow-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#00ffd5,transparent,#00ffd5);
+  filter: blur(10px);
+  opacity: 0.75;
+  animation: rotateRing 10s linear infinite;
+}
+
+/* =========================
+   PROJECTS PAGE
+========================= */
+.projects-section {
+  min-height: 100vh;
+  padding-top: 140px;
+  text-align: center;
+}
+
+.projects-grid {
+  max-width: 900px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.project-card {
+  background: #181818;
+  padding: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+  text-align: left;
+}
+
+.project-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 18px 40px rgba(0,255,213,0.25);
+}
+
+/* =========================
+   PROJECT MODAL
+========================= */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 2000;
+}
+
+.project-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #121212;
+  padding: 35px;
+  border-radius: 18px;
+  max-width: 500px;
+  width: 90%;
+  animation: fadeUp 0.4s ease;
+  position: relative;
+}
+
+.modal-image {
+  position: relative;
+  max-width: 340px;
+  margin: 0 auto 22px;
+}
+
+.modal-image img {
+  width: 100%;
+  border-radius: 14px;
+  z-index: 2;
+  position: relative;
+}
+
+.image-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 16px;
+  background: radial-gradient(circle, #00ffd5, transparent 70%);
+  filter: blur(20px);
+  opacity: 0.6;
+  animation: pulseGlow 3.5s ease-in-out infinite;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes softFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.75; }
+  100% { opacity: 0.4; }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .hero-image { width: 210px; height: 210px; }
+  .modal-image { max-width: 280px; }
+}
+/* =========================
+   PROJECT IMAGE – ADVANCED EFFECTS
+========================= */
+
+/* Hover zoom */
+.modal-image img {
+  transition: transform 0.4s ease;
+}
+
+.modal-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Mouse-follow light */
+.modal-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(0, 255, 213, 0.25),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.modal-image:hover::after {
+  opacity: 1;
+}
+/* =========================
+   PAGE TRANSITION
+========================= */
+body {
+  animation: pageFade 0.6s ease;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =========================
+   PREMIUM CURSOR (GLOBAL)
+========================= */
+
+/* Hide default cursor */
+body {
+  cursor: none;
+}
+
+/* INNER DOT */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #00ffd5;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+/* OUTER RING */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0, 255, 213, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, border 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+/* HOVER INTERACTION (buttons, links, cards) */
+a:hover ~ .cursor-ring,
+button:hover ~ .cursor-ring,
+.skill-card:hover ~ .cursor-ring,
+.project-card:hover ~ .cursor-ring {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #00ffd5;
+}
+
+/* DISABLE ON MOBILE */
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
+  body {
+    cursor: default;
+  }
+}
+/* =========================
+   CONTACT PAGE
+========================= */
+.contact-section {
+  min-height: 100vh;
+  padding-top: 140px;
+  text-align: center;
+}
+
+.contact-section h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.contact-sub {
+  color: #cfcfcf;
+  margin-bottom: 50px;
+  font-size: 1.05rem;
+}
+
+/* GRID */
+.contact-grid {
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+}
+
+/* CARD */
+.contact-card {
+  background: #181818;
+  padding: 35px 25px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 18px 40px rgba(0,255,213,0.25);
+}
+
+/* ICON */
+.contact-icon {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-icon img {
+  width: 48px;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(0,255,213,0.35));
+}
+
+/* TEXT */
+.contact-card h3 {
+  margin-bottom: 6px;
+}
+
+.contact-card p {
+  color: #cccccc;
+  font-size: 0.95rem;
+}
+
+.hint {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #00ffd5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .contact-section h1 {
+    font-size: 2.2rem;
+  }
+}
+/* =========================
+   ACCESSIBILITY
+========================= */
+:focus-visible {
+  outline: 2px solid #00ffd5;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  margin-top: 80px;
+  padding: 30px 20px;
+  text-align: center;
+  background: #0b0b0b;
+  color: #8a8a8a;
+  font-size: 0.85rem;
+}
+
+.site-footer p {
+  margin: 4px 0;
+}
+/* =========================
+   ACCESSIBILITY POLISH
+========================= */
+
+/* Keyboard focus (for tab navigation) */
+:focus-visible {
+  outline: 2px solid #00ffd5;
+  outline-offset: 4px;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+.about-container h2 {
+  margin-top: 35px;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  color: #ffffff;
+}

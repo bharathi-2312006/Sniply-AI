@@ -6,7 +6,7 @@ BlackFlag is a full-stack web application that allows users to shorten URLs, cre
 🎥 Demo Video
 
 Project Walkthrough:
-[Add YouTube Video Link Here]
+[https://youtube.com/shorts/7IaPmPRSA1g?si=dW7xCijx4xoRJf5i]
 
 ✨ Features
 🔗 URL Shortening
