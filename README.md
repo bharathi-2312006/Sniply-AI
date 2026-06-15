@@ -1,44 +1,102 @@
-# Sniply AI
+🏴‍☠️ BlackFlag
+Smart URL Shortener & Analytics Platform
 
-AI-powered URL Shortener and Analytics Platform built for Hackathon.
+BlackFlag is a full-stack web application that allows users to shorten URLs, create custom aliases, generate QR codes, and track link performance through an interactive analytics dashboard.
 
-## Features
+🎥 Demo Video
 
-* URL Shortening
-* Custom Aliases
-* QR Code Generation
-* Analytics Dashboard
-* Campaign Management
-* Click Tracking
-* PDF Export
-* Device Analytics
-* Country Analytics
+Project Walkthrough:
+[Add YouTube Video Link Here]
 
-## Tech Stack
+✨ Features
+🔗 URL Shortening
+🎯 Custom Aliases
+🤖 Smart Alias Suggestions
+📱 QR Code Generation & Download
+📊 Click Tracking
+📈 Analytics Dashboard
+🥧 Click Distribution Pie Chart
+📄 PDF Analytics Export
+🔍 Search & Manage Links
+📋 One-Click Copy
+🗑️ Delete Links
+🛠️ Tech Stack
+Frontend
+React
+React Router
+Axios
+Recharts
+QRCode React
+Framer Motion
+Backend
+FastAPI
+SQLAlchemy
+SQLite
+Uvicorn
+🚀 Getting Started
+Backend
+cd backend
 
-Frontend:
+python -m venv venv
 
-* React
-* Vite
-* Recharts
+venv\Scripts\activate
 
-Backend:
-
-* FastAPI
-* SQLite
-
-## Run
-
-### Backend
-
-```bash
 pip install -r requirements.txt
+
 python -m uvicorn main:app --reload
-```
 
-### Frontend
+Runs on:
 
-```bash
+http://127.0.0.1:8000
+Frontend
+cd frontend
+
 npm install
+
 npm run dev
-```
+
+Runs on:
+
+http://localhost:5173
+📂 Project Structure
+BlackFlag
+│
+├── backend
+│   ├── routes
+│   ├── models.py
+│   ├── database.py
+│   └── main.py
+│
+├── frontend
+│   ├── components
+│   ├── pages
+│   ├── charts
+│   ├── services
+│   └── App.jsx
+│
+└── README.md
+📡 API Endpoints
+POST   /api/shorten
+GET    /api/urls
+DELETE /api/urls/{code}
+GET    /api/analytics
+🎯 Key Highlights
+Real-time click tracking
+Interactive analytics charts
+QR code support
+PDF report generation
+Responsive modern UI
+Custom URL aliases
+👨‍💻 Team
+
+Project: BlackFlag
+Category: URL Shortener & Analytics Platform
+
+🔮 Future Scope
+User Authentication
+Geo Analytics
+Device Analytics
+Custom Domains
+Team Workspaces
+
+This version is the ideal length for GitHub and hackathon submissions.

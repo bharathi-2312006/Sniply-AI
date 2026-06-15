@@ -1,59 +1,50 @@
 import {
- BrowserRouter,
- Routes,
- Route
+  BrowserRouter,
+  Routes,
+  Route
 } from "react-router-dom";
-import Campaigns from "./pages/Campaigns";
+
 import MainLayout from "./layouts/MainLayout";
+
 import Dashboard from "./pages/Dashboard";
 import Links from "./pages/Links";
 import Analytics from "./pages/Analytics";
-import QRCenter from "./pages/QRCenter";
-import Settings from "./pages/Settings";
+
 function App() {
 
- return (
-  <BrowserRouter>
+  return (
 
-   <Routes>
+    <BrowserRouter>
 
-    <Route
-     path="/"
-     element={<MainLayout />}
-    >
-<Route
-  path="campaigns"
-  element={<Campaigns />}
-/>
-     <Route
-      index
-      element={<Dashboard />}
-     />
+      <Routes>
 
-     <Route
-      path="links"
-      element={<Links />}
-     />
-<Route
-  path="settings"
-  element={<Settings />}
-/>
-     <Route
-      path="analytics"
-      element={<Analytics />}
-     />
+        <Route
+          path="/"
+          element={<MainLayout />}
+        >
 
-     <Route
-      path="qr"
-      element={<QRCenter />}
-     />
+          <Route
+            index
+            element={<Dashboard />}
+          />
 
-    </Route>
+          <Route
+            path="links"
+            element={<Links />}
+          />
 
-   </Routes>
+          <Route
+            path="analytics"
+            element={<Analytics />}
+          />
 
-  </BrowserRouter>
- );
+        </Route>
+
+      </Routes>
+
+    </BrowserRouter>
+
+  );
 }
 
 export default App;

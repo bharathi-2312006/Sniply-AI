@@ -13,7 +13,6 @@ from sqlalchemy.orm import Session
 from database import get_db
 
 from models import URL
-
 from schemas import URLCreate
 
 router = APIRouter()
@@ -23,7 +22,8 @@ def generate_code(length=6):
 
     return "".join(
         random.choices(
-            string.ascii_letters + string.digits,
+            string.ascii_letters +
+            string.digits,
             k=length
         )
     )
@@ -35,7 +35,10 @@ def shorten_url(
     db: Session = Depends(get_db)
 ):
 
-    code = data.custom_alias or generate_code()
+    code = (
+        data.custom_alias
+        or generate_code()
+    )
 
     existing = db.query(URL).filter(
         URL.short_code == code
@@ -50,8 +53,12 @@ def shorten_url(
     expiry = None
 
     if data.expires_in_days:
-        expiry = datetime.utcnow() + timedelta(
-            days=data.expires_in_days
+
+        expiry = (
+            datetime.utcnow()
+            + timedelta(
+                days=data.expires_in_days
+            )
         )
 
     new_url = URL(
@@ -68,7 +75,8 @@ def shorten_url(
     db.refresh(new_url)
 
     return {
-        "short_url": f"http://localhost:8000/{code}",
+        "short_url":
+        f"http://localhost:8000/{code}",
         "code": code
     }
 
@@ -92,10 +100,15 @@ def delete_url(
     ).first()
 
     if not url:
-        raise HTTPException(404)
+        raise HTTPException(
+            status_code=404,
+            detail="URL not found"
+        )
 
     db.delete(url)
 
     db.commit()
 
-    return {"message": "Deleted"}
+    return {
+        "message": "Deleted"
+    }

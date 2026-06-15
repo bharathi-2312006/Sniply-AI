@@ -6,13 +6,21 @@ from sqlalchemy import Boolean
 
 from database import Base
 
+
 class URL(Base):
 
     __tablename__ = "urls"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
 
-    original_url = Column(String, nullable=False)
+    original_url = Column(
+        String,
+        nullable=False
+    )
 
     short_code = Column(
         String,
@@ -24,6 +32,17 @@ class URL(Base):
 
     expires_at = Column(DateTime)
 
-    clicks = Column(Integer, default=0)
+    clicks = Column(
+        Integer,
+        default=0
+    )
 
-    is_active = Column(Boolean, default=True)
+    is_active = Column(
+        Boolean,
+        default=True
+    )
+
+    health_status = Column(
+        String,
+        default="Unknown"
+    )

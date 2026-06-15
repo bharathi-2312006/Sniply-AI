@@ -17,80 +17,146 @@ import History from "./History";
 import ClickChart from "../charts/ClickChart";
 
 export default function Dashboard() {
-  const [urls, setUrls] = useState([]);
+
+  const [urls, setUrls] =
+    useState([]);
 
   const loadUrls = async () => {
+
     try {
-      const res = await API.get("/urls");
+
+      const res =
+        await API.get("/urls");
+
       setUrls(res.data);
+
     } catch (err) {
+
       console.log(err);
+
     }
+
   };
 
   useEffect(() => {
     loadUrls();
   }, []);
 
-  const totalClicks = urls.reduce(
-    (sum, item) => sum + item.clicks,
-    0
-  );
+  const totalClicks =
+    urls.reduce(
+      (sum, item) =>
+        sum + item.clicks,
+      0
+    );
 
-  const chartData = urls.map((url) => ({
-    name: url.short_code,
-    clicks: url.clicks,
-  }));
+  const chartData =
+    urls.map((url) => ({
+      name:
+        url.short_code,
+      clicks:
+        url.clicks,
+    }));
+
+  const topLink =
+    urls.length > 0
+      ? [...urls].sort(
+          (a, b) =>
+            b.clicks -
+            a.clicks
+        )[0]
+      : null;
+
+  const healthyLinks =
+    urls.filter(
+      (u) =>
+        u.health_status ===
+        "Healthy"
+    ).length;
+
+  const aiInsights = [];
+
+  if (urls.length === 0) {
+
+    aiInsights.push(
+      "Create your first shortened link to start tracking analytics."
+    );
+
+  }
+
+  if (urls.length > 0) {
+
+    aiInsights.push(
+      `${urls.length} links currently managed.`
+    );
+
+    aiInsights.push(
+      `${totalClicks} total clicks recorded.`
+    );
+
+    if (topLink) {
+
+      aiInsights.push(
+        `Top performer: ${topLink.short_code} (${topLink.clicks} clicks)`
+      );
+
+    }
+
+    const inactive =
+      urls.filter(
+        (u) => u.clicks === 0
+      ).length;
+
+    if (inactive > 0) {
+
+      aiInsights.push(
+        `${inactive} links have not received traffic yet.`
+      );
+
+    }
+
+    aiInsights.push(
+      `${healthyLinks} healthy links detected.`
+    );
+
+  }
 
   return (
+
     <div className="dashboard-page">
 
       {/* HERO */}
 
       <motion.div
         className="hero-banner"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{
+          opacity: 0,
+          y: -30,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
       >
-        <h1>⚡ Sniply AI</h1>
+
+        <h1>
+          🏴‍☠️ BlackFlag
+        </h1>
 
         <p>
           Smart URL Shortener &
           Marketing Analytics Platform
         </p>
+
       </motion.div>
-      <div className="page-card">
-
- <h2>Recent Activity</h2>
-
- <ul className="activity-feed">
-
-  <li>
-   🔗 google created
-  </li>
-
-  <li>
-   📱 QR downloaded
-  </li>
-
-  <li>
-   🚀 Campaign launched
-  </li>
-
-  <li>
-   👆 Link clicked
-  </li>
-
- </ul>
-
-</div>
 
       {/* KPI */}
 
       <div className="kpi-grid">
 
         <motion.div
-          whileHover={{ scale: 1.05 }}
+          whileHover={{
+            scale: 1.05,
+          }}
         >
           <StatCard
             title="Total Links"
@@ -100,7 +166,9 @@ export default function Dashboard() {
         </motion.div>
 
         <motion.div
-          whileHover={{ scale: 1.05 }}
+          whileHover={{
+            scale: 1.05,
+          }}
         >
           <StatCard
             title="Total Clicks"
@@ -110,7 +178,9 @@ export default function Dashboard() {
         </motion.div>
 
         <motion.div
-          whileHover={{ scale: 1.05 }}
+          whileHover={{
+            scale: 1.05,
+          }}
         >
           <StatCard
             title="QR Generated"
@@ -120,52 +190,91 @@ export default function Dashboard() {
         </motion.div>
 
         <motion.div
-          whileHover={{ scale: 1.05 }}
+          whileHover={{
+            scale: 1.05,
+          }}
         >
           <StatCard
-            title="Campaigns"
-            value="1"
+            title="Healthy Links"
+            value={healthyLinks}
             icon={<FaRocket />}
           />
         </motion.div>
 
       </div>
 
-      {/* QUICK ACTIONS */}
+      {/* TOP LINK */}
 
-      <div className="quick-actions">
+      {topLink && (
 
-        <div className="action-card">
-          <h3>Create Campaign</h3>
-          <p>
-            Create a trackable
-            marketing campaign.
-          </p>
+        <div className="page-card">
+
+          <h2>
+            🏆 Top Performing Link
+          </h2>
+
+          <div
+            style={{
+              marginTop: "15px",
+            }}
+          >
+
+            <h3>
+              {topLink.short_code}
+            </h3>
+
+            <p>
+              Total Clicks:
+              {" "}
+              {topLink.clicks}
+            </p>
+
+          </div>
+
         </div>
 
-        <div className="action-card">
-          <h3>Generate QR</h3>
-          <p>
-            Create QR codes for
-            offline marketing.
-          </p>
-        </div>
+      )}
 
-        <div className="action-card">
-          <h3>Track Analytics</h3>
-          <p>
-            Monitor engagement
-            and click activity.
-          </p>
+      {/* AI INSIGHTS */}
+
+      <div className="page-card">
+
+        <h2>
+          🤖 AI Insights
+        </h2>
+
+        <div
+          style={{
+            marginTop: "20px",
+          }}
+        >
+
+          {aiInsights.map(
+            (item, index) => (
+
+              <div
+                key={index}
+                className="insight-item"
+              >
+
+                {item}
+
+              </div>
+
+            )
+          )}
+
         </div>
 
       </div>
 
       {/* CREATE LINK */}
 
-      <CreateLink reload={loadUrls} />
+      <CreateLink
+        reload={loadUrls}
+      />
 
-      {/* ANALYTICS */}
+      {/* CHART */}
 
       <div className="chart-card">
 
@@ -179,7 +288,7 @@ export default function Dashboard() {
 
       </div>
 
-      {/* RECENT LINKS */}
+      {/* HISTORY */}
 
       <div className="history-wrapper">
 
@@ -191,5 +300,6 @@ export default function Dashboard() {
       </div>
 
     </div>
+
   );
 }

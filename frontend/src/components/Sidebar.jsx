@@ -1,54 +1,40 @@
 import {
   FaHome,
   FaLink,
-  FaChartBar,
-  FaQrcode,
-  FaCog,
+  FaChartBar
 } from "react-icons/fa";
 
 import { NavLink } from "react-router-dom";
-import { FaBullhorn } from "react-icons/fa";
+
 export default function Sidebar() {
+
   const menu = [
     {
       icon: <FaHome />,
       text: "Dashboard",
-      path: "/",
+      path: "/"
     },
     {
       icon: <FaLink />,
       text: "Links",
-      path: "/links",
+      path: "/links"
     },
-    {
- icon:<FaBullhorn />,
- text:"Campaigns",
- path:"/campaigns"
-},
     {
       icon: <FaChartBar />,
       text: "Analytics",
-      path: "/analytics",
-    },
-    {
-      icon: <FaQrcode />,
-      text: "QR Studio",
-      path: "/qr",
-    },
-    {
-      icon: <FaCog />,
-      text: "Settings",
-      path: "/settings",
-    },
+      path: "/analytics"
+    }
   ];
 
   return (
     <aside className="sidebar">
+
       <div className="logo">
-        ⚡ Sniply AI
+        🏴‍☠️ BlackFlag
       </div>
 
       {menu.map((item) => (
+
         <NavLink
           key={item.path}
           to={item.path}
@@ -61,7 +47,9 @@ export default function Sidebar() {
           {item.icon}
           <span>{item.text}</span>
         </NavLink>
+
       ))}
+
     </aside>
   );
 }
